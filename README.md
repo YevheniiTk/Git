@@ -1,2 +1,0 @@
-# Git
-gti for studying 
