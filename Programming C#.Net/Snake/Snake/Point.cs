@@ -1,0 +1,54 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Snake
+{
+    public class Point
+    {
+        public int x;
+        public int y;
+        public char symbol;
+
+        public Point(int x, int y, char sym)
+        {
+            this.x = x;
+            this.y = y;
+            symbol = sym;
+        }
+
+        public void Draw()
+        {
+            Console.SetCursorPosition(x, y);
+            Console.Write(symbol);
+        }
+
+        public void Move(int offset, Direction direction)
+        {
+            if (direction == Direction.RIGHT)
+            {
+                x = x + offset;
+            }
+            else if (direction == Direction.LEFT)
+            {
+                x = x - offset;
+            }
+            else if (direction == Direction.DOWN)
+            {
+                y = y + offset;
+            }
+            else if (direction == Direction.UP)
+            {
+                y = y - offset;
+            }
+        }
+
+        internal void Clear()
+        {
+            Console.SetCursorPosition(x, y);
+            Console.Write(" ");
+        }
+    }
+}
