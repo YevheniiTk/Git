@@ -19,7 +19,7 @@ namespace Snake
             int xRandom = random.Next(1, windowWidth);
             int yRandom = random.Next(1, windowHeigth);
 
-            base.pList = new List<Point> { new Point(xRandom, yRandom, symbolForFood) };
+            base.pointsList = new List<Point> { new Point(xRandom, yRandom, symbolForFood) };
         }
         
 
@@ -31,7 +31,7 @@ namespace Snake
             int yRandom = random.Next(1, windowHeigth);
             pointFood = new Point(xRandom, yRandom, symbolForFood);
 
-            base.pList[0] = pointFood;
+            base.pointsList[0] = pointFood;
 
         }
     }

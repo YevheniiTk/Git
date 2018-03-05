@@ -47,6 +47,13 @@ namespace ParsingData_Tkachenko_
                 .TrimEnd('.')
                 .Trim();
 
+            string resultValid = ValidName(name);
+
+            if (string.IsNullOrEmpty(resultValid))
+            {
+                throw new Exception(resultValid);
+            }
+
             var size = nameAndSize
                 .Replace(nameAndExtension, string.Empty)
                 .Trim('(', ')');
@@ -54,11 +61,36 @@ namespace ParsingData_Tkachenko_
             return CreateSomeFile(fileType, name, size, extension, attributes);
         }
 
+        private static string ValidName(string name)
+        {
+            char[] badSymbol = new[] { '~', '#','%', '&',
+                                       '*', '{','}', '\\',
+                                       ':', '<','>', '?',
+                                       '/', '+','|', '\"'};
+
+            foreach(char e in badSymbol)
+            {
+                if(name.Contains(e))
+                {
+                    return $"A file name can't contain any of the following characters:" +
+                           $"~ # % & * : < > ? / + | \\ ' ";
+                }          
+            }              
+                           
+            if (name.Length > 210)
+            {
+                return "Name of the file exceeds allowed number of characters";
+            }
+           
+
+            return string.Empty;
+        }
+
         private static SomeFile CreateSomeFile(
-            string fileType, 
-            string name, 
-            string size, 
-            string extension, 
+            string fileType,
+            string name,
+            string size,
+            string extension,
             string[] attributes)
         {
             switch (fileType.ToLowerInvariant())

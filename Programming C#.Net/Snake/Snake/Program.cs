@@ -13,8 +13,8 @@ namespace Snake
             int windowHeigth = 28;
             int windowWidth = 70; 
 
-            Console.WindowHeight = windowHeigth;
-            Console.WindowWidth = windowWidth;
+            Console.WindowHeight = windowHeigth+2;
+            Console.WindowWidth = windowWidth+2;
             Console.CursorVisible = false;
 
             Food food = new Food(windowWidth, windowHeigth);
@@ -37,7 +37,7 @@ namespace Snake
                     command = Console.ReadKey().Key;
                 }
 
-                snake.Move();
+                snake.MoveSnake();
                 snake.HandleKey(command);
 
                 if(snake.Eat(food))

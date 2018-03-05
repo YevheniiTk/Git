@@ -18,23 +18,23 @@ namespace Snake
         {
             this.Length = length;
             this.direction = direction;
-            pList = new List<Point>();
+            base.pointsList = new List<Point>();
             
                 for (int i = 0; i < this.Length; i++)
                 {
                     Point p = new Point(tail.x, tail.y, tail.symbol);
                     p.Move(i, direction);
-                    pList.Add(p);
+                    pointsList.Add(p);
                 }
         }
 
-        internal void Move()
+        internal void MoveSnake()
         {
-            tail = pList.First();
+            tail = pointsList.First();
 
-            pList.Remove(tail);
+            pointsList.Remove(tail);
             head = GetNextPoint();
-            pList.Add(head);
+            pointsList.Add(head);
 
             tail.Clear();
             head.Draw();
@@ -55,7 +55,7 @@ namespace Snake
 
         public Point GetNextPoint()
         {
-            Point head = pList.Last();
+            Point head = pointsList.Last();
             Point nextPoint = new Point(head.x, head.y, head.symbol);
             nextPoint.Move(1, direction);
             return nextPoint;
