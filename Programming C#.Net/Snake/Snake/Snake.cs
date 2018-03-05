@@ -20,12 +20,12 @@ namespace Snake
             this.direction = direction;
             base.pointsList = new List<Point>();
             
-                for (int i = 0; i < this.Length; i++)
-                {
-                    Point p = new Point(tail.x, tail.y, tail.symbol);
-                    p.Move(i, direction);
-                    pointsList.Add(p);
-                }
+            for (int i = this.Length; i > 0; i--)
+            {
+                Point p = new Point(tail.x, tail.y, tail.symbol);
+                p.Move(i, direction);
+                pointsList.Add(p);
+            }
         }
 
         internal void MoveSnake()
@@ -42,9 +42,12 @@ namespace Snake
 
         internal bool Eat(Food food)
         {
-            if(food.pointFood.x == head.x && food.pointFood.y == head.y)
+            if (food.pointFood.x == head.x && food.pointFood.y == head.y)
             {
                 this.Length++;
+                Point p = new Point(tail.x, tail.y, tail.symbol);
+                pointsList.Add(p);
+
                 return true;
             }
             else
