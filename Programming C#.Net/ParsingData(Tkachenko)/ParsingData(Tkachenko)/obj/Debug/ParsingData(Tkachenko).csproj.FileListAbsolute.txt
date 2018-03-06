@@ -1,7 +1,0 @@
-C:\git\Git\Programming C#.Net\ParsingData(Tkachenko)\ParsingData(Tkachenko)\bin\Debug\ParsingData(Tkachenko).exe.config
-C:\git\Git\Programming C#.Net\ParsingData(Tkachenko)\ParsingData(Tkachenko)\bin\Debug\ParsingData(Tkachenko).exe
-C:\git\Git\Programming C#.Net\ParsingData(Tkachenko)\ParsingData(Tkachenko)\bin\Debug\ParsingData(Tkachenko).pdb
-C:\git\Git\Programming C#.Net\ParsingData(Tkachenko)\ParsingData(Tkachenko)\obj\Debug\ParsingData(Tkachenko).csprojResolveAssemblyReference.cache
-C:\git\Git\Programming C#.Net\ParsingData(Tkachenko)\ParsingData(Tkachenko)\obj\Debug\ParsingData(Tkachenko).csproj.CoreCompileInputs.cache
-C:\git\Git\Programming C#.Net\ParsingData(Tkachenko)\ParsingData(Tkachenko)\obj\Debug\ParsingData(Tkachenko).exe
-C:\git\Git\Programming C#.Net\ParsingData(Tkachenko)\ParsingData(Tkachenko)\obj\Debug\ParsingData(Tkachenko).pdb
