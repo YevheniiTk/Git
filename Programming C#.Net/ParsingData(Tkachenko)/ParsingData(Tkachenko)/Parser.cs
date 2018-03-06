@@ -49,7 +49,7 @@ namespace ParsingData_Tkachenko_
 
             string resultValid = ValidName(name);
 
-            if (string.IsNullOrEmpty(resultValid))
+            if (!string.IsNullOrEmpty(resultValid))
             {
                 throw new Exception(resultValid);
             }
