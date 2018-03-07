@@ -16,6 +16,11 @@ namespace ParsingData_Tkachenko_
                              Text:data.txt(12B);Some another code
                              Movie:logan.2017.mkv(19GB);1920x1080;2h12m";
 
+            input = @"Text: file......txt((((((6B))));nfvjb/*-+fvj;bfvhbfhjjf;/-+vbhjj
+                             Image:img.bmp(19mb);1920x1080
+                             Text:data.txt(12B);Some another code
+                             Movie:logan.2017.mkv(19GB);1920x1080;2h12m";
+
             var parser = new Parser();
             var listObjects = parser.Parse(input);
             var printedFiles = PrintFiles(listObjects);

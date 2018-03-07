@@ -18,7 +18,18 @@ namespace ParsingData_Tkachenko_.Files
             string[] someAttributes) 
             : base(type, name, extension, size, someAttributes)
         {
-            this.Content = someAttributes[0];
+            if (someAttributes.Length == 1)
+            {
+                this.Content = someAttributes[0];
+            }
+            else if (someAttributes.Length > 1)
+            {
+                foreach (var s in someAttributes)
+                {
+                    this.Content += s + ";";
+                }
+                this.Content = this.Content.TrimEnd(';');
+            }
         }
 
         public override List<Tuple<string, string>> GetAttributesWithNames()
