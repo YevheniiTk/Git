@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Snake
 {
+    //TODO: According to the requirements, you need to implement several types of food using polymorphism principle
     public class Food : Figure
     {
         public Point pointFood;

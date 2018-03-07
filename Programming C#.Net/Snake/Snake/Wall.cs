@@ -29,6 +29,7 @@ namespace Snake
             }
         }
         
+        //TODO: You already have the same code in another place. Why 'Wall' isn't a 'Figure'?
         public void Draw()
         {
             foreach (Point p in pointList)

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Snake
 {
+    //TODO: Is it an abstract or concrete class for the purpose of this project?
     public class Figure
     {
         protected List<Point> pointsList;

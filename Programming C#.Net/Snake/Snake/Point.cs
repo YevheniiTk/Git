@@ -8,6 +8,7 @@ namespace Snake
 {
     public class Point
     {
+        //TODO: three fields below are public members. Thus, 1) start from uppercase; 2) shouldn't be changed outside the class. 
         public int x;
         public int y;
         public char symbol;
