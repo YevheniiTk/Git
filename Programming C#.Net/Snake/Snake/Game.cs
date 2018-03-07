@@ -8,7 +8,8 @@ namespace Snake
 {
     public class Game
     {
-        private  decimal speed;
+        //TODO: Two members below should be changed to one: decimal Speed { get; private set; }
+        private decimal speed;
         public  decimal Speed
         {
             get

@@ -9,7 +9,7 @@ namespace Snake
     public class Snake : Figure
     {
         private Direction direction;
-        private int Length { get; set; }
+        private int Length { get; set; } //TODO: Private field. 1) Lower case; 2) no real need to have getters and setters.
 
         private Point head;
         private Point tail;
@@ -30,6 +30,7 @@ namespace Snake
             base.pointsList[0].symbol = '*';
         }
 
+        //TODO: Your class is already called 'Snake', so the repetition of this word in the method name is excessive. Call it just Move().
         internal void MoveSnake()
         {
             tail = pointsList.First();
@@ -65,6 +66,7 @@ namespace Snake
             return nextPoint;
         }
 
+        //TODO: This method doesn't belong to 'Snake' class. 
         public void HandleKey(ConsoleKey key)
         {
             if (key == ConsoleKey.LeftArrow && direction != Direction.RIGHT)
@@ -77,6 +79,8 @@ namespace Snake
                 direction = Direction.UP;
         }
 
+        //TODO: This method has no references. Don't leave unsused code in the database. 
+        //(If you just forgot to use it - I beleive it should belong to 'Game' class)
         public bool DidSnakeHitWall(Snake snake, int windowWidth, int windowHeigth)
         {
             if (snake.head.x == 1 || snake.head.x == windowWidth
