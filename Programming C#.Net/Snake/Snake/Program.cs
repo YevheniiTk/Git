@@ -13,12 +13,15 @@ namespace Snake
             int windowHeigth = 28;
             int windowWidth = 70; 
 
+            Food food = new Food();
+            Wall wall = new Wall(28, 70, 'X');
+            Game game = new Game(150m);
+
             Console.WindowHeight = windowHeigth+2;
             Console.WindowWidth = windowWidth+2;
             Console.CursorVisible = false;
 
-            Food food = new Food(windowWidth, windowHeigth);
-            Wall wall = new Wall(28, 70, 'X');
+            
             wall.Drow();
 
             food.CreateFood(windowWidth, windowHeigth);
@@ -30,23 +33,25 @@ namespace Snake
 
             do
             {
-                System.Threading.Thread.Sleep(300);
+                System.Threading.Thread.Sleep((int)game.Speed);
 
                 if (Console.KeyAvailable)
                 {
                     command = Console.ReadKey().Key;
+                    snake.HandleKey(command);
                 }
 
                 snake.MoveSnake();
-                snake.HandleKey(command);
 
                 if(snake.Eat(food))
                 {
-                    food = new Food(windowWidth, windowHeigth);
+                    game.AddSpeed();
                     food.CreateFood(windowWidth, windowHeigth);
                     food.Drow();
                 }
-                
+                food.CreateFood(windowWidth, windowHeigth);
+                food.Drow();
+
             } while (true);
 
 

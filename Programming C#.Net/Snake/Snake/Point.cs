@@ -21,34 +21,38 @@ namespace Snake
 
         public void Draw()
         {
-            Console.SetCursorPosition(x, y);
-            Console.Write(symbol);
+            this.Draw(x, y, symbol);
         }
 
+        public void Clear()
+        {
+            this.Draw(x, y, ' ');
+        }
+        
         public void Move(int offset, Direction direction)
         {
-            if (direction == Direction.RIGHT)
+            switch (direction)
             {
-                x = x + offset;
-            }
-            else if (direction == Direction.LEFT)
-            {
-                x = x - offset;
-            }
-            else if (direction == Direction.DOWN)
-            {
-                y = y + offset;
-            }
-            else if (direction == Direction.UP)
-            {
-                y = y - offset;
+                case Direction.RIGHT:
+                    x = x + offset;
+                    break;
+                case Direction.LEFT:
+                    x = x - offset;
+                    break;
+                case Direction.DOWN:
+                    y = y + offset;
+                    break;
+                case Direction.UP:
+                    y = y - offset;
+                    break;
             }
         }
 
-        internal void Clear()
+        private void Draw(int x, int y, char symbol)
         {
             Console.SetCursorPosition(x, y);
-            Console.Write(" ");
+            Console.Write(symbol);
+            Console.SetCursorPosition(0, 0);
         }
     }
 }

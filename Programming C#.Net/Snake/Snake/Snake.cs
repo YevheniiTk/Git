@@ -14,28 +14,31 @@ namespace Snake
         private Point head;
         private Point tail;
 
+        private char symbolForHead = '@';
+
         public Snake(Point tail, int length, Direction direction)
         {
             this.Length = length;
             this.direction = direction;
             base.pointsList = new List<Point>();
-            
+
             for (int i = this.Length; i > 0; i--)
             {
                 Point p = new Point(tail.x, tail.y, tail.symbol);
                 p.Move(i, direction);
                 pointsList.Add(p);
             }
+
+            base.pointsList[0].symbol = '*';
         }
 
         internal void MoveSnake()
         {
             tail = pointsList.First();
-
             pointsList.Remove(tail);
             head = GetNextPoint();
             pointsList.Add(head);
-
+            
             tail.Clear();
             head.Draw();
         }
@@ -45,7 +48,7 @@ namespace Snake
             if (food.pointFood.x == head.x && food.pointFood.y == head.y)
             {
                 this.Length++;
-                Point p = new Point(tail.x, tail.y, tail.symbol);
+                Point p = new Point(head.x, head.y, tail.symbol);
                 pointsList.Add(p);
 
                 return true;
@@ -66,13 +69,13 @@ namespace Snake
 
         public void HandleKey(ConsoleKey key)
         {
-            if (key == ConsoleKey.LeftArrow)
+            if (key == ConsoleKey.LeftArrow && direction != Direction.RIGHT)
                 direction = Direction.LEFT;
-            else if (key == ConsoleKey.RightArrow)
+            else if (key == ConsoleKey.RightArrow && direction != Direction.LEFT)
                 direction = Direction.RIGHT;
-            else if (key == ConsoleKey.DownArrow)
+            else if (key == ConsoleKey.DownArrow && direction != Direction.UP)
                 direction = Direction.DOWN;
-            else if (key == ConsoleKey.UpArrow)
+            else if (key == ConsoleKey.UpArrow && direction != Direction.DOWN)
                 direction = Direction.UP;
         }
 
