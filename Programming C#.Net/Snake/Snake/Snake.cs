@@ -79,5 +79,18 @@ namespace Snake
                 direction = Direction.UP;
         }
 
+        public bool DidSnakeHitWall(Snake snake, int windowWidth, int windowHeigth)
+        {
+            if (snake.head.x == 1 || snake.head.x == windowWidth
+             || snake.head.y == 0 || snake.head.y == windowHeigth)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }
