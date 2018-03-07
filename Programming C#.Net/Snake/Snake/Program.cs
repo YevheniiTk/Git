@@ -10,20 +10,18 @@ namespace Snake
     {
         static void Main(string[] args)
         {
-            var isGameOn = true;
-
             int windowHeigth = 28;
-            int windowWidth = 70;
+            int windowWidth = 70; 
 
             Food food = new Food();
             Wall wall = new Wall(28, 70, 'X');
-            Game game = new Game(200m);
+            Game game = new Game(150m);
 
-            Console.WindowHeight = windowHeigth + 2;
-            Console.WindowWidth = windowWidth + 2;
+            Console.WindowHeight = windowHeigth+2;
+            Console.WindowWidth = windowWidth+2;
             Console.CursorVisible = false;
 
-
+            
             wall.Draw();
 
             food.CreateFood(windowWidth, windowHeigth);
@@ -31,7 +29,7 @@ namespace Snake
 
             Snake snake = new Snake(new Point(5, 5, 'O'), 5, Direction.RIGHT);
 
-            ConsoleKey command = ConsoleKey.RightArrow;
+            ConsoleKey command = Console.ReadKey().Key;
 
             do
             {
@@ -45,37 +43,17 @@ namespace Snake
 
                 snake.MoveSnake();
 
-                if (snake.Eat(food))
+                if(snake.Eat(food))
                 {
                     game.AddSpeed();
                     food.CreateFood(windowWidth, windowHeigth);
                     food.Draw();
                 }
 
-                var isWallHit = snake.DidSnakeHitWall(snake, windowWidth, windowHeigth);
+            } while (true);
 
-                if (isWallHit)
-                {
-                    isGameOn = false;
-                    Console.SetCursorPosition(10, 10);
-                    Console.WriteLine("The snke hit the wall and died.");
-                }
 
-            } while (isGameOn);
 
-            ContinueTheGameOrNot();
-            
-        }
-
-        private static void ContinueTheGameOrNot()
-        {
-            Console.SetCursorPosition(10, 12);
-            Console.WriteLine("\t If you want to play again, press Y.");
-            if (Console.ReadKey().Key == ConsoleKey.Y)
-            {
-                Console.Clear();
-                Main(null);
-            }
         }
     }
 }

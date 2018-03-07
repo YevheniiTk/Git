@@ -14,8 +14,6 @@ namespace Snake
         private Point head;
         private Point tail;
 
-        private char symbolForHead = '@';
-
         public Snake(Point tail, int length, Direction direction)
         {
             this.Length = length;
