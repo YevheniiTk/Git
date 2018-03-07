@@ -24,10 +24,10 @@ namespace Snake
             Console.CursorVisible = false;
 
 
-            wall.Drow();
+            wall.Draw();
 
             food.CreateFood(windowWidth, windowHeigth);
-            food.Drow();
+            food.Draw();
 
             Snake snake = new Snake(new Point(5, 5, 'O'), 5, Direction.RIGHT);
 
@@ -49,7 +49,7 @@ namespace Snake
                 {
                     game.AddSpeed();
                     food.CreateFood(windowWidth, windowHeigth);
-                    food.Drow();
+                    food.Draw();
                 }
 
                 var isWallHit = snake.DidSnakeHitWall(snake, windowWidth, windowHeigth);
