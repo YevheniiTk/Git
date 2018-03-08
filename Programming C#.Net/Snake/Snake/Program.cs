@@ -1,31 +1,46 @@
-﻿using System;
+﻿//-----------------------------------------------------------------------
+// <copyright file="Program.cs" company="Tkachenko">
+//     Copyright (c) Tkachenko. All rights reserved.
+// </copyright>
+//-----------------------------------------------------------------------
 
 namespace Snake
 {
-    class Program
+    using System;
+
+    /// <summary>
+    /// Class program.
+    /// </summary>
+    internal class Program
     {
-        static void Main(string[] args)
+        /// <summary>
+        /// The main method. 
+        /// </summary>
+        /// <param name="args">Some arguments</param>
+        private static void Main(string[] args)
         {
             var isGameOn = true;
 
             var game = new Game(28, 70, 10, 10, 'X', 'O', 200m);
             Food food = new FoodAt(17, 20);
             var wall = new Wall(game.WindowHeigth, game.WindowWidth, game.WallSymbol);
-            var snake = new Snake(new Point(game.SnakeStartPointX,
-                                                 game.SnakeStartPointY,
-                                                 game.SnakeSymbol),
-                                                 Direction.Right);
+            var snake = new Snake(
+                                 new Point(
+                                  game.SnakeStartPositionX,
+                                  game.SnakeStartPositionY,
+                                  game.SnakeSymbol),
+                                  Direction.Right);
 
             Console.WindowHeight = game.WindowHeigth + 2;
             Console.WindowWidth = game.WindowWidth + 2;
             Console.CursorVisible = false;
-            
+
             wall.Draw();
             food.Draw();
-            
+
             ConsoleKey command = ConsoleKey.RightArrow;
 
-            do
+            while (isGameOn)
             {
                 System.Threading.Thread.Sleep((int)game.Speed);
 
@@ -52,19 +67,22 @@ namespace Snake
                     Console.SetCursorPosition(10, 10);
                     Console.WriteLine("The snke hit the wall and died.");
                 }
-
-            } while (isGameOn);
+            }
 
             ContinueTheGameOrNot();
-            
         }
 
+        /// <summary>
+        /// Making food in random places.
+        /// </summary>
+        /// <param name="game">Game instructions</param>
+        /// <returns>return food</returns>
         private static Food CreateFood(Game game)
         {
             Random r = new Random();
             if (r.Next(2) == 0)
-            { 
-             return new FoodAt(game.WindowWidth, game.WindowHeigth);
+            {
+                return new FoodAt(game.WindowWidth, game.WindowHeigth);
             }
             else
             {
@@ -72,6 +90,9 @@ namespace Snake
             }
         }
 
+        /// <summary>
+        /// Сhecks to continue the game or not.
+        /// </summary>
         private static void ContinueTheGameOrNot()
         {
             Console.SetCursorPosition(10, 12);

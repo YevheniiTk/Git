@@ -1,23 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿//-----------------------------------------------------------------------
+// <copyright file="Snake.cs" company="Tkachenko">
+//     Copyright (c) Tkachenko. All rights reserved.
+// </copyright>
+//-----------------------------------------------------------------------
 
 namespace Snake
 {
-    public class Snake : Figure
-    {
-        
-        private Direction direction;
-        private int Length { get; set; }
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
+    /// <summary>
+    /// Snake for game.
+    /// </summary>
+    public partial class Snake : Figure
+    {
+        /// <summary>
+        /// Snake direction.
+        /// </summary>
+        private Direction direction;
+
+        /// <summary>
+        /// Snake head.
+        /// </summary>
         private Point head;
+
+        /// <summary>
+        /// Snake tail.
+        /// </summary>
         private Point tail;
 
+        /// <summary>
+        /// Gets or sets snake lengh.
+        /// </summary>
+        private int Length { get; set; }
+    }
+
+    /// <summary>
+    /// Snake for game.
+    /// </summary>
+    public partial class Snake : Figure
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Snake"/> class.
+        /// </summary>
+        /// <param name="tail">Last snake's point</param>
+        /// <param name="direction">First snake's point</param>
         public Snake(Point tail, Direction direction)
         {
             this.Length = 5;
             this.direction = direction;
-            base.pointsList = new List<Point>();
+            this.pointsList = new List<Point>();
 
             for (int i = this.Length; i > 0; i--)
             {
@@ -27,23 +60,17 @@ namespace Snake
             }
         }
 
-        internal void MoveSnake()
-        {
-            tail = pointsList.First();
-            pointsList.Remove(tail);
-            head = GetNextPoint();
-            pointsList.Add(head);
-            
-            tail.Clear();
-            head.Draw();
-        }
-
+        /// <summary>
+        /// When snake eats food.
+        /// </summary>
+        /// <param name="food">Snake's food</param>
+        /// <returns>True if snake ate food</returns>
         public bool Eat(Food food)
         {
-            if (food.pointFood.X == head.X && food.pointFood.Y == head.Y)
+            if (food.PointFood.X == this.head.X && food.PointFood.Y == this.head.Y)
             {
                 this.Length++;
-                Point p = new Point(head.X, head.Y, head.Symbol);
+                Point p = new Point(this.head.X, this.head.Y, this.head.Symbol);
                 pointsList.Add(p);
        
                 return true;
@@ -54,26 +81,42 @@ namespace Snake
             }
         }
 
+        /// <summary>
+        /// Get next point
+        /// </summary>
+        /// <returns>Next point</returns>
         public Point GetNextPoint()
         {
             Point head = pointsList.Last();
             Point nextPoint = new Point(head.X, head.Y, head.Symbol);
-            nextPoint.Move(1, direction);
+            nextPoint.Move(1, this.direction);
             return nextPoint;
         }
 
+        /// <summary>
+        /// Indicates the direction of the snake.
+        /// </summary>
+        /// <param name="key">pressed button</param>
         public void HandleKey(ConsoleKey key)
         {
-            if (key == ConsoleKey.LeftArrow && direction != Direction.Right)
-                direction = Direction.Left;
-            else if (key == ConsoleKey.RightArrow && direction != Direction.Left)
-                direction = Direction.Right;
-            else if (key == ConsoleKey.DownArrow && direction != Direction.Up)
-                direction = Direction.Down;
-            else if (key == ConsoleKey.UpArrow && direction != Direction.Down)
-                direction = Direction.Up;
+            if (key == ConsoleKey.LeftArrow && this.direction != Direction.Right)
+            {
+                this.direction = Direction.Left;
+            }
+            else if (key == ConsoleKey.RightArrow && this.direction != Direction.Left)
+            {
+                this.direction = Direction.Right;
+            }
+            else if (key == ConsoleKey.DownArrow && this.direction != Direction.Up)
+            {
+                this.direction = Direction.Down;
+            }
+            else if (key == ConsoleKey.UpArrow && this.direction != Direction.Down)
+            {
+                this.direction = Direction.Up;
+            }
         }
-
+        
         public bool DidSnakeHitWall(Snake snake, int windowWidth, int windowHeigth)
         {
             if (snake.head.X == 1 || snake.head.X == windowWidth
@@ -87,5 +130,18 @@ namespace Snake
             }
         }
 
+        /// <summary>
+        /// Move snake
+        /// </summary>
+        internal void MoveSnake()
+        {
+            this.tail = pointsList.First();
+            this.pointsList.Remove(this.tail);
+            this.head = this.GetNextPoint();
+            this.pointsList.Add(this.head);
+            
+            this.tail.Clear();
+            this.head.Draw();
+        }
     }
 }

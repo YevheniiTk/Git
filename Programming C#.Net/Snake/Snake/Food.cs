@@ -1,43 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
+﻿//-----------------------------------------------------------------------
+// <copyright file="Food.cs" company="Tkachenko">
+//     Copyright (c) Tkachenko. All rights reserved.
+// </copyright>
+//-----------------------------------------------------------------------
 
 namespace Snake
 {
-    //TODO: According to the requirements, 
-    //you need to implement several types of food using polymorphism principle
+    using System;
+    using System.Collections.Generic;
+
+    /// <summary>
+    /// Some food for snake.
+    /// </summary>
     public abstract class Food : Figure
     {
+        /// <summary>
+        /// Point for food.
+        /// </summary>
+        public readonly Point PointFood;
+
+        /// <summary>
+        /// Symbol for food.
+        /// </summary>
         private readonly char symbolForFood;
-        public readonly Point pointFood;
+
+        /// <summary>
+        /// Аor arbitrary creation of coordinates.
+        /// </summary>
         private Random random;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Food"/> class.
+        /// </summary>
+        /// <param name="windowWidth">Screen width.</param>
+        /// <param name="windowHeigth">Screen hight</param>
+        /// <param name="symbolForFood">Symbol for food</param>
         public Food(int windowWidth, int windowHeigth, char symbolForFood)
         {
             this.random = new Random();
-            int xRandom = random.Next(2, windowWidth);
-            int yRandom = random.Next(1, windowHeigth);
+            int xRandom = this.random.Next(2, windowWidth);
+            int yRandom = this.random.Next(1, windowHeigth);
 
             this.symbolForFood = symbolForFood;
 
-            this.pointFood = new Point(xRandom, yRandom, this.symbolForFood);
-            base.pointsList = new List<Point> { pointFood };
+            this.PointFood = new Point(xRandom, yRandom, this.symbolForFood);
+            this.pointsList = new List<Point> { this.PointFood };
         }
     }
-
-    public class FoodAt : Food
-    {
-        public FoodAt(int windowWidth, int windowHeigth) 
-            : base(windowWidth, windowHeigth,symbolForFood: '@')
-        {
-        }
-    }
-
-    public class FoodSharp : Food
-    {
-        public FoodSharp(int windowWidth, int windowHeigth) 
-            : base(windowWidth, windowHeigth, symbolForFood: '#')
-        {
-        }
-    }
-
 }
