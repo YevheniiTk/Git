@@ -1,3 +1,9 @@
 bin/
 obj/
-.sv/
+sv/
+
+*.ide
+
+*.ide-shm
+
+*.ide-wal
