@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Snake
 {
@@ -12,25 +8,21 @@ namespace Snake
         {
             var isGameOn = true;
 
-            int windowHeigth = 28;
-            int windowWidth = 70;
+            var game = new Game(28, 70, 10, 10, 'X', 'O', 200m);
+            Food food = new FoodAt(17, 20);
+            var wall = new Wall(game.WindowHeigth, game.WindowWidth, game.WallSymbol);
+            var snake = new Snake(new Point(game.SnakeStartPointX,
+                                                 game.SnakeStartPointY,
+                                                 game.SnakeSymbol),
+                                                 Direction.Right);
 
-            Food food = new Food();
-            Wall wall = new Wall(28, 70, 'X');
-            Game game = new Game(200m);
-
-            Console.WindowHeight = windowHeigth + 2;
-            Console.WindowWidth = windowWidth + 2;
+            Console.WindowHeight = game.WindowHeigth + 2;
+            Console.WindowWidth = game.WindowWidth + 2;
             Console.CursorVisible = false;
-
-
+            
             wall.Draw();
-
-            food.CreateFood(windowWidth, windowHeigth);
             food.Draw();
-
-            Snake snake = new Snake(new Point(5, 5, 'O'), 5, Direction.RIGHT);
-
+            
             ConsoleKey command = ConsoleKey.RightArrow;
 
             do
@@ -48,11 +40,11 @@ namespace Snake
                 if (snake.Eat(food))
                 {
                     game.AddSpeed();
-                    food.CreateFood(windowWidth, windowHeigth);
+                    food = CreateFood(game);
                     food.Draw();
                 }
 
-                var isWallHit = snake.DidSnakeHitWall(snake, windowWidth, windowHeigth);
+                var isWallHit = snake.DidSnakeHitWall(snake, game.WindowWidth, game.WindowHeigth);
 
                 if (isWallHit)
                 {
@@ -67,10 +59,23 @@ namespace Snake
             
         }
 
+        private static Food CreateFood(Game game)
+        {
+            Random r = new Random();
+            if (r.Next(2) == 0)
+            { 
+             return new FoodAt(game.WindowWidth, game.WindowHeigth);
+            }
+            else
+            {
+                return new FoodSharp(game.WindowWidth, game.WindowHeigth);
+            }
+        }
+
         private static void ContinueTheGameOrNot()
         {
             Console.SetCursorPosition(10, 12);
-            Console.WriteLine("\t If you want to play again, press Y.");
+            Console.WriteLine("If you want to play again, press Y.");
             if (Console.ReadKey().Key == ConsoleKey.Y)
             {
                 Console.Clear();

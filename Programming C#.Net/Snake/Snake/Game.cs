@@ -1,36 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Snake
+﻿namespace Snake
 {
     public class Game
     {
-        private  decimal speed;
-        public  decimal Speed
+        public int WindowHeigth { get; private set; }
+        public int WindowWidth { get; private set; }
+        public int SnakeStartPointX { get; private set; }
+        public int SnakeStartPointY { get; private set; }
+        public char WallSymbol { get; private set; }
+        public char SnakeSymbol { get; private set; }
+        public decimal Speed { get; private set; }
+
+        public Game(int windowHeigth, 
+                    int windowWidth, 
+                    int snakeStartPointX,
+                    int snakeStartPointY,
+                    char wallSymbol,
+                    char snakeSymbol, 
+                    decimal speed)
         {
-            get
-            {
-                return speed;
-            }
-            set
-            {
-                speed = value;
-            }
+            WindowHeigth = windowHeigth;
+            WindowWidth =windowWidth;
+            SnakeStartPointX = snakeStartPointX;
+            SnakeStartPointY = snakeStartPointY;
+            WallSymbol = wallSymbol;
+            SnakeSymbol = snakeSymbol;
+            Speed = speed;
         }
 
-        public Game (decimal speed)
+        public virtual void AddSpeed()
         {
-            this.speed = speed;
-        }
-
-        public  void AddSpeed()
-        {
-            this.speed *= 0.925m;
+            Speed *= 0.925m;
         }
     }
 
-    
+
 }

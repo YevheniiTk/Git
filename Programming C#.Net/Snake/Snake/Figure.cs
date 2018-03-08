@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Snake
 {
-    public class Figure
+    public abstract class Figure
     {
-        protected List<Point> pointsList;
+        protected List<Point> pointsList = new List<Point>();
 
-        public void Draw()
+        public virtual void Draw()
         {
             foreach (Point p in pointsList)
             {
