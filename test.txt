@@ -1,2 +1,6 @@
-Hello world. This is my fileHello world. This is my fileHello world. This is my fileHello world. This is my file
+Hello world. This is my fileHello world. 
+This is my fileHello world. 
+New test line
+This is my fileHello world. 
+This is my file
 new line
