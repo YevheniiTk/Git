@@ -7,3 +7,4 @@ sv/
 *.ide-shm
 
 *.ide-wal
+*.lock
